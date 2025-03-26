@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="color-scheme" content="dark light">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Spline Viewer | About Me</title>
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.80/build/spline-viewer.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: rgb(0, 0, 0);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+        .container {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5rem;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-size: 1rem;
+            transition: color 0.2s ease;
+        }
+        nav a:hover {
+            color: #a7a7a7;
+        }
+        .main-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px;
+            gap: 20px;
+            position: relative;
+            z-index: 2;
+            width: 80%;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeSlideIn 1.5s ease-out forwards 0.5s;
+        }
+        .text-content {
+            max-width: 600px;
+            text-align: left;
+        }
+        .text-content h1 {
+            font-size: 36px;
+            opacity: 0;
+            animation: fadeIn 1.2s ease-out forwards 1s;
+        }
+        .text-content p {
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards 1.3s;
+        }
+        .text-content span {
+            color: #ff00f2;
+            font-weight: bold;
+        }
+        .image-container {
+            position: relative;
+            padding: 5%;
+            opacity: 0;
+            transform: scale(0.8);
+            animation: zoomIn 1.5s ease-out forwards 1s;
+        }
+        .image-container img {
+            width: 250px;
+            height: auto;
+            border-radius: 5px;
+        }
+        .image-container::before,
+        .image-container::after {
+            content: "";
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 4px solid #c800f9;
+        }
+        .image-container::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+        .image-container::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+        spline-viewer {
+            position: absolute;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.9);
+            animation: fadeZoomIn 2s ease-out forwards 0.8s;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeZoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">MY PORTFOLIO</h1>
+        <nav>
+            <a href="./index.html">Home</a>
+            <a href="./about.html">About</a>
+            <a href="./education.html">Education</a>
+            <a href="./project.html">Projects</a>
+            <a href="./skills.html">Skills</a>
+            <a href="./Resume.html">Resume</a>
+        </nav>
+    </header>
+    <div class="main-content">
+        <div class="text-content">
+            <h1>Hi! I'm <span>Haranshi</span>,<br>A Web Developer</h1>
+            <br>
+            <p> A passionate web developer with 1 year of experience in web development and design. I specialize in creating dynamic and visually appealing websites, ensuring seamless user experiences. My technical expertise includes Python, C++, Java, JavaScript, and React.js. I love solving complex problems and building innovative solutions that make an impact. Let's collaborate and create something amazing!"</p>
+        </div>
+        <div class="image-container">
+            <img src="./haranshi.jpg" alt="Profile Image">
+        </div>
+    </div>
+    <spline-viewer url="https://prod.spline.design/xmUb1NQbkTzfRjrw/scene.splinecode"></spline-viewer>
+</body>
+</html>
